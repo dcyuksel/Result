@@ -28,6 +28,21 @@ public class Result
         return result;
     }
 
+    public static implicit operator Result(Error error)
+    {
+        return Fail(error);
+    }
+
+    public static implicit operator Result(Error[] errors)
+    {
+        return Fail(errors);
+    }
+
+    public static implicit operator Result(List<Error> errors)
+    {
+        return Fail([.. errors]);
+    }
+
     public void Add(ResultBaseModel model)
     {
         if (model is Error)

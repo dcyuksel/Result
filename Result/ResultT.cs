@@ -31,4 +31,19 @@ public sealed class Result<T> : Result
     {
         return new Result<T>(payload);
     }
+
+    public static implicit operator Result<T>(Error error)
+    {
+        return Result<T>.Fail(error);
+    }
+
+    public static implicit operator Result<T>(Error[] errors)
+    {
+        return Result<T>.Fail(errors);
+    }
+
+    public static implicit operator Result<T>(List<Error> errors)
+    {
+        return Result<T>.Fail([.. errors]);
+    }
 }
