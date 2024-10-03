@@ -22,11 +22,6 @@ public static class ResultExtensions
         result.AddRange(warnings);
     }
 
-    public static Result<T> ToResult<T>(this List<Error> errors)
-    {
-        return Result<T>.Fail([.. errors]);
-    }
-
     public static Result<T> ToResult<T>(this Result result)
     {
         var resultT = Result<T>.Fail([.. result.Errors]);
