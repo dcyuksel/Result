@@ -7,4 +7,4 @@ While this approach works, exceptions are slow and costly. Additionally, your co
 
 Therefore, using the Result Pattern is a more effective way to control flow. Examples can be found in the test project. For a more detailed explanation, please refer to the project site.
 
-Feel free to ask any questions!
+For further details, please visit the project site.
