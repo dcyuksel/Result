@@ -29,6 +29,17 @@ public class ResultTests
     }
 
     [Fact]
+    public void FailWithEmptyErrorsShouldAddDefaultError()
+    {
+        var result = Result.Fail();
+        result.Errors.Should().HaveCount(1);
+        result.Errors.First().Message.Should().Be("Fail result is created without any error.");
+        result.Warnings.Should().HaveCount(0);
+        result.IsSuccessful.Should().BeFalse();
+        result.IsFailed.Should().BeTrue();
+    }
+
+    [Fact]
     public void Add()
     {
         var result = Result.Ok();

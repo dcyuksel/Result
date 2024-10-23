@@ -29,4 +29,15 @@ public class ResultTTests
         result.IsFailed.Should().BeTrue();
         result.Payload.Should().BeNull();
     }
+
+    [Fact]
+    public void FailWithEmptyErrorsShouldAddDefaultError()
+    {
+        Result<int> result = Result<int>.Fail();
+        result.Errors.Should().HaveCount(1);
+        result.Errors.First().Message.Should().Be("Fail result is created without any error.");
+        result.Warnings.Should().HaveCount(0);
+        result.IsSuccessful.Should().BeFalse();
+        result.IsFailed.Should().BeTrue();
+    }
 }

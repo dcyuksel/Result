@@ -22,9 +22,13 @@ public sealed class Result<T> : Result
 
     public static new Result<T> Fail(params Error[] errors)
     {
-        var result = new Result<T>([.. errors], []);
+        var validErrors = errors.Where(e => e is not null).ToList();
+        if (validErrors.Count == 0)
+        {
+            validErrors.Add(new Error("Fail result is created without any error."));
+        }
 
-        return result;
+        return new Result<T>(validErrors, []);
     }
 
     public static implicit operator Result<T>(T payload)

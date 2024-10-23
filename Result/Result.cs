@@ -23,9 +23,13 @@ public class Result
 
     public static Result Fail(params Error[] errors)
     {
-        var result = new Result([.. errors], []);
+        var validErrors = errors.Where(e => e is not null).ToList();
+        if (validErrors.Count == 0)
+        {
+            validErrors.Add(new Error("Fail result is created without any error."));
+        }
 
-        return result;
+        return new Result(validErrors, []);
     }
 
     public static implicit operator Result(Error error)
