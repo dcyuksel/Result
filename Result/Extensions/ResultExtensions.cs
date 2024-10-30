@@ -22,7 +22,7 @@ public static class ResultExtensions
         result.AddRange(warnings);
     }
 
-    public static Result<T> ToResult<T>(this Result result)
+    public static Result<T> ToResult<T>(this Result result) where T : notnull
     {
         var resultT = Result<T>.Fail([.. result.Errors]);
         resultT.AddRange(result.Warnings);

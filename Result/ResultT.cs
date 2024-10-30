@@ -2,7 +2,7 @@
 
 namespace Result;
 
-public sealed class Result<T> : Result
+public sealed class Result<T> : Result where T : notnull
 {
     public T? Payload { get; } = default;
 
