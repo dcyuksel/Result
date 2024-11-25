@@ -20,7 +20,7 @@ public sealed class Result<T> : Result where T : notnull
         return new Result<T>(payload);
     }
 
-    public static new Result<T> Fail(params Error[] errors)
+    public static new Result<T> Fail(params List<Error> errors)
     {
         var validErrors = errors.Where(e => e is not null).ToList();
         if (validErrors.Count == 0)
@@ -41,13 +41,8 @@ public sealed class Result<T> : Result where T : notnull
         return Result<T>.Fail(error);
     }
 
-    public static implicit operator Result<T>(Error[] errors)
-    {
-        return Result<T>.Fail(errors);
-    }
-
     public static implicit operator Result<T>(List<Error> errors)
     {
-        return Result<T>.Fail([.. errors]);
+        return Result<T>.Fail(errors);
     }
 }
